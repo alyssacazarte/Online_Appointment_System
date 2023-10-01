@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Routing\UrlGenerator;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -23,8 +24,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-public function boot()
+public function boot(UrlGenerator $url)
 {
+    if (env('APP_ENV') == 'production') {
+      $url->forceScheme('https');
+    }
     Validator::extend('not_in_past_month', function ($attribute, $value, $parameters, $validator) {
        
         $selectedDate = new \DateTime($value);
