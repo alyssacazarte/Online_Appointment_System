@@ -304,7 +304,12 @@
         <div class="topBtn">
             <a href="#"><i class="fa-solid fa-angle-up"></i></a><br><br>
         </div>
+        <script  src="https://favcon.vercel.app/js/scroll.js"></script>
+        <script  src="https://favcon.vercel.app/js/portfolio.js"></script>
+
+
         <script src="{{ asset('js/scroll.js') }}"></script>
+
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
         <script src="{{ asset('js/portfolio.js') }}"></script>
 
