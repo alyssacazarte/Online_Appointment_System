@@ -12,7 +12,6 @@
     <!-- <link rel="stylesheet" href="Portfolio.css"> -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="{{ asset('css/portfolio.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://favcon.vercel.app/css/portfolio.css">
     <link rel="icon" href="{{ asset('images/Logo.png') }}" type="image/x-icon">
     <title>Portfolio</title>
 </head>
@@ -304,12 +303,7 @@
         <div class="topBtn">
             <a href="#"><i class="fa-solid fa-angle-up"></i></a><br><br>
         </div>
-        <script  src="https://favcon.vercel.app/js/scroll.js"></script>
-        <script  src="https://favcon.vercel.app/js/portfolio.js"></script>
-
-
         <script src="{{ asset('js/scroll.js') }}"></script>
-
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
         <script src="{{ asset('js/portfolio.js') }}"></script>
 
