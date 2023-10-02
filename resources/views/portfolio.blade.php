@@ -12,6 +12,7 @@
     <!-- <link rel="stylesheet" href="Portfolio.css"> -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="{{ asset('css/portfolio.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://favcon.vercel.app/css/portfolio.css">
     <link rel="icon" href="{{ asset('images/Logo.png') }}" type="image/x-icon">
     <title>Portfolio</title>
 </head>
