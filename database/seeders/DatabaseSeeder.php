@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Favio Jasso',
             'email' => 'leenunuyaa@gmail.com',
-            'role' =>  1,
+            'role' =>  'admin',
             'password' => '$2y$10$jQrPXQPbpswOcdi/MhisDuTE/CHhzKEjpOS73Gs/FA0S6IL6oPYly', // password
         ]);
     }
