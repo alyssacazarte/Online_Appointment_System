@@ -23,7 +23,7 @@ class CreateAppointmentsTable extends Migration
             $table->string("address");
             $table->string("phone_no");
             $table->string("notes");
-            $table->timestamp("created_at");
+            // $table->timestamp("created_at");
             $table->string("status")->default("Pending");
         });
     }
