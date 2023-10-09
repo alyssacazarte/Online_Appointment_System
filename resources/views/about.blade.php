@@ -130,7 +130,7 @@
 
             <div class="column">
                 <div class="contact-icons">
-                    <div class="can"><a href=""><i class="fa-solid fa-mobile-screen"></i></a>
+                    <div class="can"><a href="tel:973-234-2073"><i class="fa-solid fa-mobile-screen"></i></a>
                         <span class="tooltiptext">973-234-2073</span>
                     </div>
                     <div class="can1"> <a href=""><i class="fa-solid fa-envelope"></i></a>
