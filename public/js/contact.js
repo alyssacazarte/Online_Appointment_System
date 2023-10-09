@@ -464,16 +464,7 @@ function selectedEmailIsValid() {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return email.match(emailRegex);
 }
-// function resetFormFields() {
-//     document.querySelector('#service').value = '';
-//     document.querySelector('#schedule').value = '';
-//     document.querySelector('#timeslot').value = '';
-//     document.querySelector('#submit-name').value = '';
-//     document.querySelector('#submit-email').value = '';
-//     document.querySelector('#submit-address').value = '';
-//     document.querySelector('#submit-phone-no').value = '';
-//     document.querySelector('#submit-note').value = '';
-// }
+
 
 // function selectedItemsAreValid() {
 //     const requiredInputs = [
