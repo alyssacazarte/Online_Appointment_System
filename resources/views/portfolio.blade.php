@@ -30,13 +30,13 @@
                 <li><a href="contact">Contact</a></li> &nbsp;
                 <div class="language-selector">
                     <button class="current-language">
-                        <img src="{{ asset('images/us.png') }}" alt="USA Flag">
+                        <img src="{{ asset('images/US.png') }}" alt="USA Flag">
                         English
                     </button>
                     <ul class="language-list">
                         <li>
                             <a  href="portfolio/">
-                                <img src="{{ asset('images/us.png') }}" alt="USA Flag">{{__('messages.English')}}
+                                <img src="{{ asset('images/US.png') }}" alt="USA Flag">{{__('messages.English')}}
                             </a>
                         </li>
                         <li>

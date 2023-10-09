@@ -27,13 +27,13 @@
                 <li><a class="test" href="contact">Contact</a></li>&nbsp;
                 <div class="language-selector">
                     <button class="current-language">
-                    <img src="{{ asset('images/us.png') }}" alt="USA Flag">
+                    <img src="{{ asset('images/US.png') }}" alt="USA Flag">
                         English
                     </button>
                     <ul class="language-list">
                         <li>
                             <a  href="/contact/en">
-                                <img src="{{ asset('images/us.png') }}" alt="USA Flag">{{__('messages.English')}}
+                                <img src="{{ asset('images/US.png') }}" alt="USA Flag">{{__('messages.English')}}
                             </a>
                         </li>
                         <li>
@@ -166,7 +166,7 @@
     <br>
     <!-- -------------------- for the details ------------------------------ -->
    
-    <h2>Add you details</h2>
+    <h2>Add your details</h2>
   
     <div class="contact" id="contact">
         <div class="contactBox" >
@@ -208,7 +208,7 @@
                 By clicking below you agree to these <span>Privacy Policies</span>
             </small>
             <div>
-                <button class="btnBook" onclick="bookNow()"> Book Now </button>
+                <button class="btnBook" onclick="openConfirmationModal()"> Book Now </button>
                 <div class="inline-notification success">Thanks for contacting us! We will get in touch with you shortly.</div>
                 <div class="inline-notification error">Failed! Please fill in all the required fields.</div>
                 <div class="inline-notification invalid-email-notification">Invalid email address. Please use a correct Gmail address format.</div>
@@ -266,6 +266,13 @@
         <input type="hidden" name="phone_no" id="phone_no">
         <input type="hidden" name="notes" id="notes">
     </form>
+    <div id="confirmationModal" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to book this appointment?</p>
+        <button id="confirmButton" onclick="confirmBooking()">Yes</button>
+        <button id="cancelButton" onclick="cancelBooking()">Cancel</button>
+    </div>
+</div>
 
     <script src="{{ asset('js/scroll.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
