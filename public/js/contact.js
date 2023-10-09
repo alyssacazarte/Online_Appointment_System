@@ -328,7 +328,7 @@ function clicked(e) {
 }
 
 
-function openConfirmationModal() {
+function open() {
     const serviceId = selectedItems['service_id'];
     const scheduleId = selectedItems['schedule_id'];
     const timeslotId = selectedItems['timeslot_id'];
@@ -344,7 +344,7 @@ function openConfirmationModal() {
         errorNotification.style.display = 'block';
         setTimeout(() => {
             fadeOutAndRemove(errorNotification);
-            // resetFormFields();
+           
         }, 5000);
         return; // Don't proceed with form submission
     }
@@ -449,14 +449,14 @@ document.querySelectorAll('.btnBook').forEach((button, index) => {
             setTimeout(() => {
                 fadeOutAndRemove(errorNotification);
                 enableBookNowButton();
-                // resetFormFields();
+             
             }, fadeOutDelay);
         } else if (!selectedEmailIsValid()) {
             invalidEmailNotification.style.display = 'block';
             setTimeout(() => {
                 fadeOutAndRemove(invalidEmailNotification);
                 enableBookNowButton();
-                // resetFormFields();
+         
             }, fadeOutDelay);
         }
        
