@@ -328,7 +328,7 @@ function clicked(e) {
 }
 
 
-function bookNowButton() {
+function openConfirmationModal() {
     const serviceId = selectedItems['service_id'];
     const scheduleId = selectedItems['schedule_id'];
     const timeslotId = selectedItems['timeslot_id'];
@@ -344,6 +344,7 @@ function bookNowButton() {
         errorNotification.style.display = 'block';
         setTimeout(() => {
             fadeOutAndRemove(errorNotification);
+            // resetFormFields();
         }, 5000);
         return; // Don't proceed with form submission
     }
@@ -448,12 +449,14 @@ document.querySelectorAll('.btnBook').forEach((button, index) => {
             setTimeout(() => {
                 fadeOutAndRemove(errorNotification);
                 enableBookNowButton();
+                // resetFormFields();
             }, fadeOutDelay);
         } else if (!selectedEmailIsValid()) {
             invalidEmailNotification.style.display = 'block';
             setTimeout(() => {
                 fadeOutAndRemove(invalidEmailNotification);
                 enableBookNowButton();
+                // resetFormFields();
             }, fadeOutDelay);
         }
        
@@ -464,7 +467,16 @@ function selectedEmailIsValid() {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return email.match(emailRegex);
 }
-
+function resetFormFields() {
+    document.querySelector('#service').value = '';
+    document.querySelector('#schedule').value = '';
+    document.querySelector('#timeslot').value = '';
+    document.querySelector('#submit-name').value = '';
+    document.querySelector('#submit-email').value = '';
+    document.querySelector('#submit-address').value = '';
+    document.querySelector('#submit-phone-no').value = '';
+    document.querySelector('#submit-note').value = '';
+}
 
 // function selectedItemsAreValid() {
 //     const requiredInputs = [
