@@ -208,7 +208,7 @@
                 By clicking below you agree to these <span>Privacy Policies</span>
             </small>
             <div>
-                <button class="btnBook" onclick="openConfirmationModal()"> Book Now </button>
+                 <button class="btnBook" onclick="openConfirmationModal()"> Book Now </button>
                 <div class="inline-notification success">Thanks for contacting us! We will get in touch with you shortly.</div>
                 <div class="inline-notification error">Failed! Please fill in all the required fields.</div>
                 <div class="inline-notification invalid-email-notification">Invalid email address. Please use a correct Gmail address format.</div>
