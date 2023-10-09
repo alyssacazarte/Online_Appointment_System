@@ -328,7 +328,7 @@ function clicked(e) {
 }
 
 
-function open() {
+function openConfirmationModal() {
     const serviceId = selectedItems['service_id'];
     const scheduleId = selectedItems['schedule_id'];
     const timeslotId = selectedItems['timeslot_id'];
