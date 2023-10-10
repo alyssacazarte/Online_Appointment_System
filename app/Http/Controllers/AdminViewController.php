@@ -163,7 +163,7 @@ class AdminViewController extends Controller
             'service_id' => 'required',
             'status' => 'required',
         ], [
-            'date.not_in_past_month' => 'Make sure to create a schedule within the current/next month.',
+            'date.in_current_or_next_month' => 'Make sure to create a schedule within the current/next month.',
         ]);
           // Retrieve input data
         $date = $request->input('date');
