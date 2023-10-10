@@ -24,8 +24,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-public function boot()
+public function boot(UrlGenerator $url)
 {
+    if (env('APP_ENV') == 'production') {
+      $url->forceScheme('https');
+    }
     Validator::extend('in_current_or_next_month', function ($attribute, $value, $parameters, $validator) {
         $selectedDate = new \DateTime($value);
 
@@ -43,6 +46,7 @@ public function boot()
         }
 
         return false;
+
     });
 }
 
