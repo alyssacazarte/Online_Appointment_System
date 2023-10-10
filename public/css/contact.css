@@ -1518,7 +1518,7 @@ h5 small {
     background-color: #F8AF5B;
     color: #fff;
 }
-
+/* CSS for the modal */
 #confirmationModal {
     display: none;
     text-align: center;
@@ -1579,4 +1579,4 @@ h5 small {
   }
   
 
-
+/* Add other CSS styles as needed */
