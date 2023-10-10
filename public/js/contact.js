@@ -326,9 +326,33 @@ function clicked(e) {
     let id = e.getAttribute('data-id')
     selectedItems['timeslot_id'] = id
 }
+// ------ for the language ----------
 
+document.addEventListener('DOMContentLoaded', function () {
+    const currentLanguageButton = document.querySelector('.current-language');
+    const languageList = document.querySelector('.language-list');
+    const languageItems = document.querySelectorAll('.language-list li');
 
-function bookNow() {
+    currentLanguageButton.addEventListener('click', function () {
+        languageList.classList.toggle('active');
+    });
+
+    languageItems.forEach(item => {
+        item.addEventListener('click', function () {
+            const selectedLanguage = item.getAttribute('data-lang');
+            const flagImage = item.querySelector('img').cloneNode(true);
+            const languageText = item.textContent.trim();
+
+            currentLanguageButton.innerHTML = '';
+            currentLanguageButton.appendChild(flagImage);
+            currentLanguageButton.innerHTML += languageText;
+
+            languageList.classList.remove('active');
+        });
+    });
+});
+
+function openConfirmationModal() {
     const serviceId = selectedItems['service_id'];
     const scheduleId = selectedItems['schedule_id'];
     const timeslotId = selectedItems['timeslot_id'];
@@ -369,9 +393,84 @@ function bookNow() {
     document.querySelector('#phone_no').value = phoneNo;
     document.querySelector('#notes').value = notes;
 
+     // Show the confirmation modal
+     const modal = document.getElementById('confirmationModal');
+     modal.style.display = 'block';
+}
+function confirmBooking() {
+    // Submit the form when the user confirms
     document.getElementById('final-request').submit();
+    // Show the success notification after the form is submitted
+    const successNotifications = document.querySelectorAll('.success');
+    successNotifications.forEach((notification) => {
+        notification.style.display = 'block';
+    });
 }
 
+function cancelBooking() {
+    // Close the confirmation modal if the user cancels
+    const modal = document.getElementById('confirmationModal');
+    modal.style.display = 'none';
+}
+function openConfirmationModal() {
+    const serviceId = selectedItems['service_id'];
+    const scheduleId = selectedItems['schedule_id'];
+    const timeslotId = selectedItems['timeslot_id'];
+    const name = document.querySelector('#submit-name').value;
+    const email = document.querySelector('#submit-email').value;
+    const address = document.querySelector('#submit-address').value;
+    const phoneNo = document.querySelector('#submit-phone-no').value;
+    const notes = document.querySelector('#submit-note').value;
+
+    // Validate required fields before proceeding
+    if (!serviceId || !scheduleId || !timeslotId || !name || !email || !address || !phoneNo || !notes) {
+        const errorNotification = document.querySelector('.inline-notification.error');
+        errorNotification.style.display = 'block';
+        setTimeout(() => {
+            fadeOutAndRemove(errorNotification);
+        }, 5000);
+        return; // Don't proceed with form submission
+    }
+    // Email validation using regular expression
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!email.match(emailRegex)) {
+        const invalidEmailNotification = document.querySelector('.invalid-email-notification');
+        invalidEmailNotification.style.display = 'block';
+        setTimeout(() => {
+            fadeOutAndRemove(invalidEmailNotification);
+        }, 5000);
+        return; // Don't proceed with form submission
+    }
+
+    // Set form values and submit
+    document.querySelector('#service').value = serviceId;
+    document.querySelector('#schedule').value = scheduleId;
+    document.querySelector('#timeslot').value = timeslotId;
+    document.querySelector('#name').value = name;
+    document.querySelector('#email').value = email;
+    document.querySelector('#address').value = address;
+    document.querySelector('#phone_no').value = phoneNo;
+    document.querySelector('#notes').value = notes;
+
+     // Show the confirmation modal
+     const modal = document.getElementById('confirmationModal');
+     modal.style.display = 'block';
+}
+function confirmBooking() {
+    // Submit the form when the user confirms
+    document.getElementById('final-request').submit();
+    // Show the success notification after the form is submitted
+    const successNotifications = document.querySelectorAll('.success');
+    successNotifications.forEach((notification) => {
+        notification.style.display = 'block';
+    });
+}
+
+function cancelBooking() {
+    // Close the confirmation modal if the user cancels
+    const modal = document.getElementById('confirmationModal');
+    modal.style.display = 'none';
+}
 
 // ------ for the language ----------
 
@@ -403,6 +502,16 @@ document.addEventListener('DOMContentLoaded', function () {
 const successNotifications = document.querySelectorAll('.success');
 const errorNotifications = document.querySelectorAll('.error');
 const invalidEmailNotifications = document.querySelectorAll('.invalid-email-notification');
+
+function enableBookNowButton() {
+    const bookNowButton = document.querySelector('.btnBook');
+    bookNowButton.disabled = false;
+}
+function disableBookNowButton() {
+    const bookNowButton = document.querySelector('.btnBook');
+    bookNowButton.disabled = true;
+}
+
 document.querySelectorAll('.btnBook').forEach((button, index) => {
     button.addEventListener('click', () => {
         const successNotification = successNotifications[index];
@@ -416,27 +525,22 @@ document.querySelectorAll('.btnBook').forEach((button, index) => {
 
         // Set a timer to fade out the notification after a certain period
         const fadeOutDelay = 5000;
+        disableBookNowButton();
 
-        if (selectedItemsAreValid()) {
-            successNotification.style.display = 'block';
-            setTimeout(() => {
-                fadeOutAndRemove(successNotification);
-            }, fadeOutDelay);
-        }
-        else if (!selectedEmailIsValid()) {
-            invalidEmailNotification.style.display = 'block';
-            setTimeout(() => {
-                fadeOutAndRemove(invalidEmailNotification);
-                resetFormFields();
-            }, fadeOutDelay);
-        } else {
+        if (fieldsAreEmpty()) {
             errorNotification.style.display = 'block';
             setTimeout(() => {
                 fadeOutAndRemove(errorNotification);
-                resetFormFields();
+                enableBookNowButton();
             }, fadeOutDelay);
-
+        } else if (!selectedEmailIsValid()) {
+            invalidEmailNotification.style.display = 'block';
+            setTimeout(() => {
+                fadeOutAndRemove(invalidEmailNotification);
+                enableBookNowButton();
+            }, fadeOutDelay);
         }
+       
     });
 });
 function selectedEmailIsValid() {
@@ -444,37 +548,17 @@ function selectedEmailIsValid() {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return email.match(emailRegex);
 }
-// function resetFormFields() {
-//     document.querySelector('#service').value = '';
-//     document.querySelector('#schedule').value = '';
-//     document.querySelector('#timeslot').value = '';
-//     document.querySelector('#submit-name').value = '';
-//     document.querySelector('#submit-email').value = '';
-//     document.querySelector('#submit-address').value = '';
-//     document.querySelector('#submit-phone-no').value = '';
-//     document.querySelector('#submit-note').value = '';
-// }
+function fieldsAreEmpty() {
+    const serviceId = selectedItems['service_id'];
+    const scheduleId = selectedItems['schedule_id'];
+    const timeslotId = selectedItems['timeslot_id'];
+    const name = document.querySelector('#submit-name').value;
+    const email = document.querySelector('#submit-email').value;
+    const address = document.querySelector('#submit-address').value;
+    const phoneNo = document.querySelector('#submit-phone-no').value;
+    const notes = document.querySelector('#submit-note').value;
 
-function selectedItemsAreValid() {
-    const requiredInputs = [
-        document.querySelector('#service'),
-        document.querySelector('#schedule'),
-        document.querySelector('#timeslot'),
-        document.querySelector('#submit-name'),
-        document.querySelector('#submit-email'),
-        document.querySelector('#submit-address'),
-        document.querySelector('#submit-phone-no'),
-        document.querySelector('#submit-note'),
-
-
-    ];
-
-    for (const input of requiredInputs) {
-        if (!input.value) {
-            return false;
-        }
-    }
-    return true;
+    return !serviceId|| !scheduleId|| !timeslotId|| !name || !email || !address || !phoneNo || !notes;
 }
 
 function fadeOutAndRemove(element) {
