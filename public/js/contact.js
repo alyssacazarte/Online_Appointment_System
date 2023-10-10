@@ -326,6 +326,68 @@ function clicked(e) {
     let id = e.getAttribute('data-id')
     selectedItems['timeslot_id'] = id
 }
+
+
+function openConfirmationModal() {
+    const serviceId = selectedItems['service_id'];
+    const scheduleId = selectedItems['schedule_id'];
+    const timeslotId = selectedItems['timeslot_id'];
+    const name = document.querySelector('#submit-name').value;
+    const email = document.querySelector('#submit-email').value;
+    const address = document.querySelector('#submit-address').value;
+    const phoneNo = document.querySelector('#submit-phone-no').value;
+    const notes = document.querySelector('#submit-note').value;
+
+    // Validate required fields before proceeding
+    if (!serviceId || !scheduleId || !timeslotId || !name || !email || !address || !phoneNo || !notes) {
+        const errorNotification = document.querySelector('.inline-notification.error');
+        errorNotification.style.display = 'block';
+        setTimeout(() => {
+            fadeOutAndRemove(errorNotification);
+        }, 5000);
+        return; // Don't proceed with form submission
+    }
+    // Email validation using regular expression
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!email.match(emailRegex)) {
+        const invalidEmailNotification = document.querySelector('.invalid-email-notification');
+        invalidEmailNotification.style.display = 'block';
+        setTimeout(() => {
+            fadeOutAndRemove(invalidEmailNotification);
+        }, 5000);
+        return; // Don't proceed with form submission
+    }
+
+    // Set form values and submit
+    document.querySelector('#service').value = serviceId;
+    document.querySelector('#schedule').value = scheduleId;
+    document.querySelector('#timeslot').value = timeslotId;
+    document.querySelector('#name').value = name;
+    document.querySelector('#email').value = email;
+    document.querySelector('#address').value = address;
+    document.querySelector('#phone_no').value = phoneNo;
+    document.querySelector('#notes').value = notes;
+
+     // Show the confirmation modal
+     const modal = document.getElementById('confirmationModal');
+     modal.style.display = 'block';
+}
+function confirmBooking() {
+    // Submit the form when the user confirms
+    document.getElementById('final-request').submit();
+    // Show the success notification after the form is submitted
+    const successNotifications = document.querySelectorAll('.success');
+    successNotifications.forEach((notification) => {
+        notification.style.display = 'block';
+    });
+}
+
+function cancelBooking() {
+    // Close the confirmation modal if the user cancels
+    const modal = document.getElementById('confirmationModal');
+    modal.style.display = 'none';
+}
+
 // ------ for the language ----------
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -352,6 +414,100 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+//for the inline notification
+const successNotifications = document.querySelectorAll('.success');
+const errorNotifications = document.querySelectorAll('.error');
+const invalidEmailNotifications = document.querySelectorAll('.invalid-email-notification');
 
+function enableBookNowButton() {
+    const bookNowButton = document.querySelector('.btnBook');
+    bookNowButton.disabled = false;
+}
+function disableBookNowButton() {
+    const bookNowButton = document.querySelector('.btnBook');
+    bookNowButton.disabled = true;
+}
+
+document.querySelectorAll('.btnBook').forEach((button, index) => {
+    button.addEventListener('click', () => {
+        const successNotification = successNotifications[index];
+        const errorNotification = errorNotifications[index];
+        const invalidEmailNotification = invalidEmailNotifications[index];
+
+        // Hide all notifications initially
+        successNotification.style.display = 'none';
+        errorNotification.style.display = 'none';
+        invalidEmailNotification.style.display = 'none';
+
+        // Set a timer to fade out the notification after a certain period
+        const fadeOutDelay = 5000;
+        disableBookNowButton();
+
+        if (fieldsAreEmpty()) {
+            errorNotification.style.display = 'block';
+            setTimeout(() => {
+                fadeOutAndRemove(errorNotification);
+                enableBookNowButton();
+
+            }, fadeOutDelay);
+        } else if (!selectedEmailIsValid()) {
+            invalidEmailNotification.style.display = 'block';
+            setTimeout(() => {
+                fadeOutAndRemove(invalidEmailNotification);
+                enableBookNowButton();
+ 
+            }, fadeOutDelay);
+        }
+       
+    });
+});
+function selectedEmailIsValid() {
+    const email = document.querySelector('#submit-email').value;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return email.match(emailRegex);
+}
+
+
+// function selectedItemsAreValid() {
+//     const requiredInputs = [
+//         document.querySelector('#service'),
+//         document.querySelector('#schedule'),
+//         document.querySelector('#timeslot'),
+//         document.querySelector('#submit-name'),
+//         document.querySelector('#submit-email'),
+//         document.querySelector('#submit-address'),
+//         document.querySelector('#submit-phone-no'),
+//         document.querySelector('#submit-note'),
+
+
+//     ];
+
+//     for (const input of requiredInputs) {
+//         if (!input.value) {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+function fieldsAreEmpty() {
+    const serviceId = selectedItems['service_id'];
+    const scheduleId = selectedItems['schedule_id'];
+    const timeslotId = selectedItems['timeslot_id'];
+    const name = document.querySelector('#submit-name').value;
+    const email = document.querySelector('#submit-email').value;
+    const address = document.querySelector('#submit-address').value;
+    const phoneNo = document.querySelector('#submit-phone-no').value;
+    const notes = document.querySelector('#submit-note').value;
+
+    return !serviceId|| !scheduleId|| !timeslotId|| !name || !email || !address || !phoneNo || !notes;
+}
+
+function fadeOutAndRemove(element) {
+    element.style.transition = 'opacity 0.5s';
+    element.style.opacity = '0';
+    setTimeout(() => {
+        element.remove();
+    }, 500); // Remove element after fade-out animation
+}
 
 
