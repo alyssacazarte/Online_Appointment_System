@@ -10,7 +10,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ asset('css/contact.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ asset('images/Logo.png') }}" type="image/x-icon">
-    <link rel="stylesheet" href="{{ asset('styles.css') }}?v={{ filemtime(public_path('styles.css')) }}">
     <title>Contact</title>
 </head>
 
@@ -277,7 +276,7 @@
     <script src="{{ asset('js/scroll.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="{{ asset('js/contact.js') }}"></script>
-    <script src="{{ asset('script.js') }}?v={{ filemtime(public_path('script.js')) }}"></script>
+   
 
 </body>
 
