@@ -328,7 +328,7 @@ function clicked(e) {
 }
 
 
-function openConfirmationModal() {
+function bookNow() {
     const serviceId = selectedItems['service_id'];
     const scheduleId = selectedItems['schedule_id'];
     const timeslotId = selectedItems['timeslot_id'];
@@ -344,6 +344,7 @@ function openConfirmationModal() {
         errorNotification.style.display = 'block';
         setTimeout(() => {
             fadeOutAndRemove(errorNotification);
+            // resetFormFields();
         }, 5000);
         return; // Don't proceed with form submission
     }
@@ -368,25 +369,9 @@ function openConfirmationModal() {
     document.querySelector('#phone_no').value = phoneNo;
     document.querySelector('#notes').value = notes;
 
-     // Show the confirmation modal
-     const modal = document.getElementById('confirmationModal');
-     modal.style.display = 'block';
-}
-function confirmBooking() {
-    // Submit the form when the user confirms
     document.getElementById('final-request').submit();
-    // Show the success notification after the form is submitted
-    const successNotifications = document.querySelectorAll('.success');
-    successNotifications.forEach((notification) => {
-        notification.style.display = 'block';
-    });
 }
 
-function cancelBooking() {
-    // Close the confirmation modal if the user cancels
-    const modal = document.getElementById('confirmationModal');
-    modal.style.display = 'none';
-}
 
 // ------ for the language ----------
 
@@ -418,16 +403,6 @@ document.addEventListener('DOMContentLoaded', function () {
 const successNotifications = document.querySelectorAll('.success');
 const errorNotifications = document.querySelectorAll('.error');
 const invalidEmailNotifications = document.querySelectorAll('.invalid-email-notification');
-
-function enableBookNowButton() {
-    const bookNowButton = document.querySelector('.btnBook');
-    bookNowButton.disabled = false;
-}
-function disableBookNowButton() {
-    const bookNowButton = document.querySelector('.btnBook');
-    bookNowButton.disabled = true;
-}
-
 document.querySelectorAll('.btnBook').forEach((button, index) => {
     button.addEventListener('click', () => {
         const successNotification = successNotifications[index];
@@ -441,24 +416,27 @@ document.querySelectorAll('.btnBook').forEach((button, index) => {
 
         // Set a timer to fade out the notification after a certain period
         const fadeOutDelay = 5000;
-        disableBookNowButton();
 
-        if (fieldsAreEmpty()) {
-            errorNotification.style.display = 'block';
+        if (selectedItemsAreValid()) {
+            successNotification.style.display = 'block';
             setTimeout(() => {
-                fadeOutAndRemove(errorNotification);
-                enableBookNowButton();
-
+                fadeOutAndRemove(successNotification);
             }, fadeOutDelay);
-        } else if (!selectedEmailIsValid()) {
+        }
+        else if (!selectedEmailIsValid()) {
             invalidEmailNotification.style.display = 'block';
             setTimeout(() => {
                 fadeOutAndRemove(invalidEmailNotification);
-                enableBookNowButton();
- 
+                resetFormFields();
             }, fadeOutDelay);
+        } else {
+            errorNotification.style.display = 'block';
+            setTimeout(() => {
+                fadeOutAndRemove(errorNotification);
+                resetFormFields();
+            }, fadeOutDelay);
+
         }
-       
     });
 });
 function selectedEmailIsValid() {
@@ -466,40 +444,37 @@ function selectedEmailIsValid() {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return email.match(emailRegex);
 }
-
-
-// function selectedItemsAreValid() {
-//     const requiredInputs = [
-//         document.querySelector('#service'),
-//         document.querySelector('#schedule'),
-//         document.querySelector('#timeslot'),
-//         document.querySelector('#submit-name'),
-//         document.querySelector('#submit-email'),
-//         document.querySelector('#submit-address'),
-//         document.querySelector('#submit-phone-no'),
-//         document.querySelector('#submit-note'),
-
-
-//     ];
-
-//     for (const input of requiredInputs) {
-//         if (!input.value) {
-//             return false;
-//         }
-//     }
-//     return true;
+// function resetFormFields() {
+//     document.querySelector('#service').value = '';
+//     document.querySelector('#schedule').value = '';
+//     document.querySelector('#timeslot').value = '';
+//     document.querySelector('#submit-name').value = '';
+//     document.querySelector('#submit-email').value = '';
+//     document.querySelector('#submit-address').value = '';
+//     document.querySelector('#submit-phone-no').value = '';
+//     document.querySelector('#submit-note').value = '';
 // }
-function fieldsAreEmpty() {
-    const serviceId = selectedItems['service_id'];
-    const scheduleId = selectedItems['schedule_id'];
-    const timeslotId = selectedItems['timeslot_id'];
-    const name = document.querySelector('#submit-name').value;
-    const email = document.querySelector('#submit-email').value;
-    const address = document.querySelector('#submit-address').value;
-    const phoneNo = document.querySelector('#submit-phone-no').value;
-    const notes = document.querySelector('#submit-note').value;
 
-    return !serviceId|| !scheduleId|| !timeslotId|| !name || !email || !address || !phoneNo || !notes;
+function selectedItemsAreValid() {
+    const requiredInputs = [
+        document.querySelector('#service'),
+        document.querySelector('#schedule'),
+        document.querySelector('#timeslot'),
+        document.querySelector('#submit-name'),
+        document.querySelector('#submit-email'),
+        document.querySelector('#submit-address'),
+        document.querySelector('#submit-phone-no'),
+        document.querySelector('#submit-note'),
+
+
+    ];
+
+    for (const input of requiredInputs) {
+        if (!input.value) {
+            return false;
+        }
+    }
+    return true;
 }
 
 function fadeOutAndRemove(element) {
