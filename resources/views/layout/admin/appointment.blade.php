@@ -126,7 +126,6 @@
                             <th>Address</th>
                             <th>Phone Number</th>
                             <th>Notes</th>
-                            <th>Date & Time Booked</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -143,7 +142,6 @@
                             <td>{{$appointment->address}}</td>
                             <td>{{$appointment->phone_no}}</td>
                             <td>{{$appointment->notes}}</td>
-                            <td>{{$appointment->created_at->format('M d, Y h:i A')}}</td>
                             <td>{{$appointment->status}}</td>
                             <td>
                                 @if ($appointment->status === 'Pending')
