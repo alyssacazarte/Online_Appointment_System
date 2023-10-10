@@ -24,27 +24,25 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-public function boot(UrlGenerator $url)
+public function boot()
 {
-    if (env('APP_ENV') == 'production') {
-      $url->forceScheme('https');
-    }
-    Validator::extend('not_in_past_month', function ($attribute, $value, $parameters, $validator) {
-       
+    Validator::extend('in_current_or_next_month', function ($attribute, $value, $parameters, $validator) {
         $selectedDate = new \DateTime($value);
 
+        // Get the current month and year
+        $currentMonth = date('n'); // Numeric representation of the current month
+        $currentYear = date('Y'); // Current year
 
-        // Get the first day of the current month
-        $firstDayOfCurrentMonth = new \DateTime('first day of this month');
+        // Get the month and year of the selected date
+        $selectedMonth = $selectedDate->format('n');
+        $selectedYear = $selectedDate->format('Y');
 
+        // Check if the selected date is within the current or next month
+        if (($selectedYear == $currentYear && $selectedMonth == $currentMonth) || ($selectedYear == $currentYear && $selectedMonth == $currentMonth + 1)) {
+            return true;
+        }
 
-        // Get the last day of the current month
-        $lastDayOfCurrentMonth = new \DateTime('last day of this month');
-
-
-        // Check if the selected date is within the current month
-        return $selectedDate >= $firstDayOfCurrentMonth && $selectedDate <= $lastDayOfCurrentMonth;
-
+        return false;
     });
 }
 
