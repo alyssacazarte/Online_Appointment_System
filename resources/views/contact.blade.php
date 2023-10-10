@@ -338,10 +338,7 @@
     <script src="{{ asset('js/scroll.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="{{ asset('js/contact.js') }}"></script>
-
-</body>
-</html>
-<script>
+    <script>
     function openConfirmationModal() {
     const serviceId = selectedItems['service_id'];
     const scheduleId = selectedItems['schedule_id'];
@@ -506,3 +503,5 @@ function fadeOutAndRemove(element) {
     }, 500); // Remove element after fade-out animation
 }
 </script>
+</body>
+</html>
