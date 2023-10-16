@@ -53,7 +53,7 @@
 <div class="container">
         <div class="header">
             <h3>Hello Admin,</h3>
-            <p>A new appointment request has been submitted:</p>
+            <p>A new appointment request has been <b>Cancelled</b>:</p>
         </div>
     <div class="content">
     <p><strong>Name:</strong> {{ $appointment->name }}</p>
@@ -63,10 +63,8 @@
     <p><strong>Time:</strong> {{ $appointment->timeslot->start_time }} - {{ $appointment->timeslot->end_time }}</p>
     <p><strong>Address:</strong> {{ $appointment->address }}</p>
     <p><strong>Contact Number:</strong> {{ $appointment->phone_no }}</p>
+    <p><strong>Status:</strong> {{ $appointment->status }}</p>
         <br><br>
-    <div class="footer">
-            <p>Click <a href="{{ route('admin.dashboard.unauthenticated', ['user' => 1]) }}">here</a> to Approve or Reject this appointment request.</p>
-        </div>
     </div> 
 </body>
 </html>

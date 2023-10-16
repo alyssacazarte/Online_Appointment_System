@@ -33,12 +33,12 @@ class NotInPastMonthForUpdate implements Rule
             $firstDayOfCurrentMonth = new \DateTime('first day of this month');
     
     
-            // Get the last day of the current month
-            $lastDayOfCurrentMonth = new \DateTime('last day of this month');
+            // Get the last day of the next month
+            $lastDayOfNextMonth =  (new \DateTime('first day of next month'))->modify('last day of this month');
     
     
             // Check if the selected date is within the current month
-            return $selectedDate >= $firstDayOfCurrentMonth && $selectedDate <= $lastDayOfCurrentMonth;
+            return $selectedDate >= $firstDayOfCurrentMonth && $selectedDate <= $lastDayOfNextMonth;
         }
     
     }

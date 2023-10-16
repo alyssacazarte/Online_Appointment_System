@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Appointment Notification</title>
+    <title>>New Appointment Notification</title>
     <style>
          body, h1, h2, p {
             margin: 0;
@@ -52,8 +52,8 @@
 <body>
 <div class="container">
         <div class="header">
-            <h3>Hello Admin,</h3>
-            <p>A new appointment request has been submitted:</p>
+            <h3>Hello,</h3>
+            <p>This is your current appointment:</p>
         </div>
     <div class="content">
     <p><strong>Name:</strong> {{ $appointment->name }}</p>
@@ -65,7 +65,7 @@
     <p><strong>Contact Number:</strong> {{ $appointment->phone_no }}</p>
         <br><br>
     <div class="footer">
-            <p>Click <a href="{{ route('admin.dashboard.unauthenticated', ['user' => 1]) }}">here</a> to Approve or Reject this appointment request.</p>
+    <p>Click <a href="{{ route('appointments.cancel', ['id' => $appointment->id]) }}">here</a> to Cancel your appointment request.</p>
         </div>
     </div> 
 </body>

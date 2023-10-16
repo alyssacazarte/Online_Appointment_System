@@ -159,11 +159,11 @@ class AdminViewController extends Controller
     {
          // Validate the input, including the date
         $request->validate([
-            'date' => 'required|date|not_in_past_month',
+            'date' => 'required|date|in_current_or_next_month',
             'service_id' => 'required',
             'status' => 'required',
         ], [
-            'date.not_in_past_month' => 'Make sure to create a schedule within the current month.',
+            'date.in_current_or_next_month' => 'Make sure to create a schedule within the current/next month.',
         ]);
           // Retrieve input data
         $date = $request->input('date');
@@ -207,28 +207,38 @@ class AdminViewController extends Controller
         'status' => 'required',
     ]);
 
-
     $editSchedule = Schedule::find($request->id);
-
 
     if ($editSchedule) {
         // Find service by type and get its ID
         $serviceType = $request->input('service_type');
         $service = Service::where('type', $serviceType)->first();
 
-
         if ($service) {
+            // Check if a schedule with the same date and service_id already exists, excluding the current schedule being edited
+            $existingSchedule = Schedule::where('date', $request->input('date'))
+                ->where('service_id', $service->id)
+                ->where('id', '!=', $editSchedule->id) // Exclude the current schedule
+                ->first();
+
+            if ($existingSchedule) {
+                // A schedule with the same date and service_id already exists
+                return redirect()->back()
+                ->withErrors(['error' => 'Date already exists for this service. Please try to update another one.']);
+            }
+
             $editSchedule->date = $request->input('date');
             $editSchedule->service_id = $service->id; // Use the service's ID
             $editSchedule->status = $request->input('status');
             $editSchedule->save();
-
 
             return redirect('/schedule-dashboard')->with('success', 'Successfully Updated');
         } else {
             // Handle the case where the service type is not found
             return redirect()->back()->with('error', 'Service type not found');
         }
+    } else {
+        return redirect()->back()->with('error', 'Schedule not found');
     }
 }
 
