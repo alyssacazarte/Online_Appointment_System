@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AdminCancelAppointmentNotification;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -12,6 +13,9 @@ use App\Models\Schedule;
 use App\Models\Appointment;
 use App\Http\Requests\BookingRequest;
 use App\Mail\NewAppointmentNotification;
+use App\Mail\UserAppointmentNotification;
+use App\Mail\CancellationConfirmation;
+use App\Mail\CancellationNotPossible;
 use Session;
 
 class ContactController extends Controller
@@ -30,6 +34,31 @@ class ContactController extends Controller
                            
         return view('contact', compact('services'));
     }
+    public function cancel($id)
+    {
+        $appointment = Appointment::find($id);
+    
+        if (!$appointment) {
+            return redirect()->route('contact.index')->with('error', 'Appointment not found');
+        }
+    
+        // Check if the appointment is approved or rejected
+        if ($appointment->status === 'Approved' || $appointment->status === 'Rejected') {
+            // Send an email notifying that the appointment can't be canceled
+            Mail::to($appointment->email)->send(new CancellationNotPossible($appointment));
+            return redirect()->route('contact.index');
+        } else {
+            // Update the appointment status to "Canceled"
+            $appointment->update(['status' => 'Canceled']);
+            $adminEmail = User::where('role', 'admin')->value('email');
+            // Send a confirmation email to the user
+            Mail::to($appointment->email)->send(new CancellationConfirmation($appointment));
+            Mail::to($adminEmail)->send(new AdminCancelAppointmentNotification( $appointment));
+            return redirect()->route('contact.index');
+        }
+    }
+    
+
 
     public function book(Request $request)
     {
@@ -44,8 +73,13 @@ class ContactController extends Controller
         $newAppointment = Appointment::create($request->all());
     
         if ($newAppointment) {
+
             $adminEmail = User::where('role', 'admin')->value('email');
+            Mail::to($request->input('email'))->send(new UserAppointmentNotification($newAppointment));
+
             Mail::to($adminEmail)->send(new NewAppointmentNotification($newAppointment));
+
+            
     
             return redirect()->route('contact.index')->with('success');
         }
