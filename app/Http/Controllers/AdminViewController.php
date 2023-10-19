@@ -303,13 +303,12 @@ class AdminViewController extends Controller
     }
     public function getDates($serviceId)
     {
-        $dates = Schedule::where('service_id', $serviceId)->select('id', 'date')->get();
+        $dates = Schedule::where('service_id', $serviceId)->where('status', 'Available')
+        ->orderBy('date', 'asc')->get();
         
         return response()->json($dates);
     }
     
-
-
     public function addTimeSlot(Request $request)
     {
         // Define validation rules
@@ -353,9 +352,16 @@ class AdminViewController extends Controller
     public function editTimeslots($id)
     {
         $editTimeslots = Timeslot::find($id);
-        $dates = Schedule::where('service_id', $editTimeslots->schedule->service->id)->get(['id', 'date']);
+        $serviceId = $editTimeslots->schedule->service->id;
+    
+        $dates = Schedule::where('service_id', $serviceId)
+            ->where('status', 'Available') // Filter by status
+            ->orderBy('date', 'asc')
+            ->get(['id', 'date']);
+    
         return view('layout.admin.timeslot_update', ['data' => $editTimeslots, 'dates' => $dates]);
     }
+    
 
     public function updateTimeslots(Request $request)
     {

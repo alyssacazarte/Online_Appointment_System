@@ -56,7 +56,7 @@
 
     }
     select {
-      width: 96%;
+      width: 99.8%;
       padding: 8px;
       margin-top: 5px;
       border: 1px solid #F8AF5B;
@@ -128,7 +128,7 @@
         <label for="status">Status:</label>
         <input type="text" id="status" value="{{ $data['status'] }}" name="status" required><br>
         <br>
-        <br>
+
             @if ($errors->has('error'))
         <div class="alert alert-danger">
             {{ $errors->first('error') }}
