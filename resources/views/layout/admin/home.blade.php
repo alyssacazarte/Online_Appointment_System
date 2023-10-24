@@ -18,6 +18,7 @@
 
     <!-- Custom CSS -->
     <link href="{{ asset('css/admin_css/home.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ asset('images/Logo.png') }}" type="image/x-icon">
 </head>
 
 <body>

@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>>New Appointment Notification</title>
     <style>
-         body, h1, h2, p {
+        body {
             margin: 0;
             padding: 0;
-        }
-
-        body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
+            background-color: white;
         }
 
         /* Container styles */
@@ -20,6 +18,7 @@
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
+            border: 1px solid #ccc; 
         }
         p {
             font-size: 15px;
@@ -39,12 +38,12 @@
             border-radius: 5px;
         }
         .footer {
-            background-color: #f5f5f5;
+            background-color: #F8AF5B;
             padding: 10px;
             text-align: center;
         }
         a {
-            color: #007bff;
+            color: #F8AF5B;
             text-decoration: none;
         }
     </style>
@@ -52,7 +51,7 @@
 <body>
 <div class="container">
         <div class="header">
-            <h3>Hello,</h3>
+            <h3>Hello, {{ $appointment->name }}</h3>
             <p>This is your current appointment:</p>
         </div>
     <div class="content">
@@ -65,7 +64,7 @@
     <p><strong>Contact Number:</strong> {{ $appointment->phone_no }}</p>
         <br><br>
     <div class="footer">
-    <p>Click <a href="{{ route('appointments.cancel', ['id' => $appointment->id]) }}">here</a> to Cancel your appointment request.</p>
+    <p>Click <a href="{{ route('appointments.cancel', ['id' => $appointment->id]) }}">here</a> to <b>Cancel</b> your appointment request.</p>
         </div>
     </div> 
 </body>

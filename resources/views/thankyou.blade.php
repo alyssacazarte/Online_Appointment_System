@@ -8,11 +8,13 @@
         body, h1, h2, p {
             margin: 0;
             padding: 0;
+            background-color: white;
         }
 
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
+            background-color: white;
         }
 
         /* Container styles */
@@ -20,6 +22,7 @@
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
+            border: 1px solid #ccc;
         }
 
         /* Header styles */
@@ -57,7 +60,7 @@
 
         <div class="content">
             @if ($status === 'Approved')
-                <h2>Thank You! Your Appointment has been Approved</h2>
+                <h2>Your Appointment has been Approved</h2>
                 <br>
                 <p>I hope this message finds you well. Your appointment is confirmed. We're excited to serve you on the scheduled Date and Time.</p>
                 <br>
