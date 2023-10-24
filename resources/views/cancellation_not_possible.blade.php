@@ -8,13 +8,11 @@
         body, h1, h2, p {
             margin: 0;
             padding: 0;
-            background-color: white;
         }
 
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            background-color: white;
         }
 
         /* Container styles */
@@ -22,7 +20,6 @@
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
-            border: 1px solid #ccc;
         }
 
         /* Header styles */
@@ -55,10 +52,11 @@
 <body>
     <div class="container">
         <div class="header">
-        <h2>Appointment Could Not Be Canceled</h2>
+            <h2>Appointment Status</h2>
         </div>
 
         <div class="content">
+            <h2>Appointment Could Not Be Canceled</h2>
             <br>
             <p>Unfortunately, your appointment could not be canceled. Please check your email inbox for any other notifications.</p>
 

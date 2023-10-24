@@ -8,13 +8,11 @@
         body, h1, h2, p {
             margin: 0;
             padding: 0;
-            background-color: white;
         }
 
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            background-color: white;
         }
 
         /* Container styles */
@@ -35,7 +33,6 @@
             padding: 20px;
             background-color: #ffffff;
             border-radius: 5px;
-            border: 1px solid #ccc;
         }
 
         /* Footer styles */
@@ -55,10 +52,11 @@
 <body>
     <div class="container">
         <div class="header">
-        <h2>Successfully Canceled Your Appointment</h2>
+            <h2>Appointment Status</h2>
         </div>
 
         <div class="content">
+            <h2>Successfully Canceled Your Appointment</h2>
             <br>
             <p>Your appointment has been successfully canceled.</p>
 
