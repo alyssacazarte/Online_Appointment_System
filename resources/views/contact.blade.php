@@ -209,9 +209,9 @@
             </small>
             <div>
                 <button class="btnBook" onclick="openConfirmationModal()"> Book Now </button>
-                <div class="inline-notification success">Thanks for contacting us! We will get in touch with you shortly.</div>
-                <div class="inline-notification error">Failed! Please fill in all the required fields.</div>
-                <div class="inline-notification invalid-email-notification">Invalid email address. Please use a correct Gmail address format.</div>
+                <div class="inline-notification success"><b>Thanks for contacting us! We will get in touch with you shortly.</b></div>
+                <div class="inline-notification error"><b>Failed! Please fill in all the required fields.</b></div>
+                <div class="inline-notification invalid-email-notification"><b>Invalid email address. Please use a correct Gmail address format.</b></div>
             </div>
         </div>
     </div>
