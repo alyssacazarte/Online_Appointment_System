@@ -1580,4 +1580,31 @@ h5 small {
     background-color: #F8AF5B;
     color: #fff;
 }
+    .modal2 {
+        display: none; /* Hide the modal by default */
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto; /* Enable scrolling if the content is too tall */
+        background-color: rgba(0, 0, 0, 0.4); /* Overlay background */
+    }
+
+    .modal-content2 {
+        background-color: #fff;
+        margin: 10% auto; /* Center the modal vertically */
+        padding: 20px;
+        border: 2px solid #F8AF5B;
+        width: 50%;
+        color: #121212;
+        opacity: 0.9;
+        border-radius: 8px;
+    }
+    .modal-content2 p, h4 {
+        margin-top: 5px;
+    }
+
+
 

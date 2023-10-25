@@ -569,4 +569,21 @@ function fadeOutAndRemove(element) {
     }, 500); // Remove element after fade-out animation
 }
 
+function openPrivacyPolicyModal() {
+    var modal = document.getElementById("privacyPolicyModal");
+    modal.style.display = "block";
+
+    modal.onclick = function(event) {
+        if (event.target === modal) {
+            closePrivacyPolicyModal();
+        }
+    };
+}
+function closePrivacyPolicyModal() {
+    var modal = document.getElementById("privacyPolicyModal");
+    modal.style.display = "none";
+}
+
+
+
 

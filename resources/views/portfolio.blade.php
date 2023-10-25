@@ -64,8 +64,10 @@
                 <h1>{{ __('messages.Portfolio Landing Header')}}</h1>
                 <h1><span class="typing1"></span></h1><br>
 
-                <p>{{__('messages.Portfolio Landing Description 1')}}</p>
-                <p>{{__('messages.Portfolio Landing Description 2')}}</p>
+                <p>I help businesses grow through the power of digital
+                    marketing and creative strategy.</p>
+                <p>Learn more about my award-winning tactics and experience!</p>
+              
                 <div class="buttons">
                     <button class="btn"><a href="contact">{{__('messages.Portfolio Landing Button')}}</a></button>
                 </div>
