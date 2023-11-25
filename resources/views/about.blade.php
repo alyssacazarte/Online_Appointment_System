@@ -29,7 +29,7 @@
                 <li><a class="test" href="about">About</a></li>
                 <li><a href="contact">Contact</a></li>&nbsp;
                 <div class="language-selector">
-                    <button class="current-language">
+                    <button class="current-language"style="display:none;" >
                         <img src="{{ asset('images/US.png') }}" alt="USA Flag">
                         English
                     </button>

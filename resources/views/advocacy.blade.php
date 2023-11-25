@@ -29,7 +29,7 @@
                 <li><a href="about">About</a></li>
                 <li><a href="contact">Contact</a></li>&nbsp;
                 <div class="language-selector">
-                    <button class="current-language">
+                    <button class="current-language" style="display:none;">
                     <img src="{{ asset('images/US.png') }}" alt="USA Flag">
                         English
                     </button>
@@ -237,10 +237,10 @@
 
     <!-- =============== for the reminder ============== -->
 
-    <div class="reminder">
+    <!-- <div class="reminder">
         <span class="closeReminderbtn" onclick="this.parentElement.style.display='none';">&times;</span>
         <strong>Reminder!</strong> I don't know yet to put here, need to ask first.
-    </div>
+    </div> -->
 
 
 
