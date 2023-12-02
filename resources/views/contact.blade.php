@@ -26,7 +26,7 @@
                 <li><a href="about">About</a></li>
                 <li><a class="test" href="contact">Contact</a></li>&nbsp;
                 <div class="language-selector">
-                    <button class="current-language">
+                    <button class="current-language" style="display:none;">
                         <img src="{{ asset('images/US.png') }}" alt="USA Flag">
                         English
                     </button>
@@ -182,7 +182,7 @@
                         <input type="text" placeholder="Address" id="submit-address" required>
                         <input type="text" placeholder="Phone Number" id="submit-phone-no" required>
                     </div><br>
-                    <div class="remind">
+                    <div class="remind" >
                         <h5>
                             <img src="{{ asset('images/qmark.png') }}" alt="QuestionMark">
                             <small>

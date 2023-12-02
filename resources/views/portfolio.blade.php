@@ -29,7 +29,7 @@
                 <li><a href="about">About</a></li>
                 <li><a href="contact">Contact</a></li> &nbsp;
                 <div class="language-selector">
-                    <button class="current-language">
+                    <button class="current-language" style="display:none;">
                         <img src="{{ asset('images/US.png') }}" alt="USA Flag">
                         English
                     </button>
@@ -108,8 +108,8 @@
                                     <div class="w"
                                         style="background-image: url({{ asset('images/aboutb.png') }}); background-repeat: no-repeat; background-size: cover;">
                                         <span onclick="document.getElementById('id01').style.display='none'"
-                                            class="w3-button w3-display-topright">&times;</span>
-                                        <h5 style="padding: 3rem; text-align: justify;">
+                                            class="w3-button w3-display-topright" style="color: red;">&times;</span>
+                                        <h5 style="padding: 3rem; text-align: justify; color: black; margin-top: 7rem;">
                                         <li>{{__('messages.Portfolio Landing Project Card One Description 1')}}</li>
                                         <li>{{__('messages.Portfolio Landing Project Card One Description 2')}}</li>
                                         </h5>
@@ -135,8 +135,8 @@
                                     <div class="w"
                                         style="background-image: url({{ asset('images/aboutb.png') }}); background-repeat: no-repeat; background-size: cover;">
                                         <span onclick="document.getElementById('id02').style.display='none'"
-                                            class="w3-button w3-display-topright">&times;</span>
-                                        <h5 style="padding: 3rem; text-align: justify;">
+                                            class="w3-button w3-display-topright" style="color: red;">&times;</span>
+                                        <h5 style="padding: 3rem; text-align: justify; color:black; margin-top: 7rem;">
                                         <li>{{__('messages.Portfolio Landing Project Card Two Description 1')}}</li>
                                         <li>{{__('messages.Portfolio Landing Project Card Two Description 2')}}</li>
                                         <li>{{__('messages.Portfolio Landing Project Card Two Description 3')}}</li>
