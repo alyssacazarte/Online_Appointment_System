@@ -12,7 +12,7 @@
     <link href="{{ asset('css/advocacy.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ asset('images/Logo.png') }}" type="image/x-icon">
 
-    <title>Advocacy</title>
+    <title>Experience</title>
 </head>
 
 <body>
