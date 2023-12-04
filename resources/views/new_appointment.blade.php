@@ -50,7 +50,7 @@
 <body>
 <div class="container">
         <div class="header">
-            <h3>Hello, {{ Auth::user()->name }}</h3>
+            <h3>Hello, Favio</h3>
             <p>A new appointment request has been submitted:</p>
         </div>
     <div class="content">
