@@ -20,7 +20,7 @@
     <!-- ======== Header ======== -->
     <div style="box-shadow: 0 2px 4px 0 rgba(0,0,0,.5);" class="header">
         <div class="logo">
-        <img src="{{ asset('images/Logo.png') }}" alt="Logo">
+        <a href="portfolio"><img src="{{asset ('images/Logo.png')}}" alt="Logo"></a>
         </div>
         <nav>
             <ul>

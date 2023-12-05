@@ -112,6 +112,12 @@
         <option value="Inactive" {{ $data['status'] === 'Inactive' ? 'selected' : '' }}>Inactive</option>
     </select><br>
         <br>
+        @if ($errors->has('description'))
+        <div class="alert alert-danger">
+            {{ $errors->first('description') }}
+        </div>
+    @endif
+    <br>
         <button type="submit">Submit</button>
       </form>
     </div>

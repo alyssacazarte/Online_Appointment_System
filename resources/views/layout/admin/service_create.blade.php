@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Create New Service</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <style>
     body {
       background: linear-gradient(to right, #F8AF5B, #f8f6f2);
@@ -113,6 +114,12 @@
         <option value="Inactive">Inactive</option>
     </select>
     <br>
+    <br>
+    @if ($errors->has('description'))
+        <div class="alert alert-danger">
+            {{ $errors->first('description') }}
+        </div>
+    @endif
     <br>
         <button type="submit">Submit</button>
       </form>
