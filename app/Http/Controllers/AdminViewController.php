@@ -257,6 +257,11 @@ class AdminViewController extends Controller
 
         public function addServices(Request $request)
         {
+            $request->validate([
+                'description' => 'required|string|max:255',
+            ], [
+                'description' => 'The description may not be greater than 255 characters.',
+            ]);
             $createServices = new Service;
             if ($createServices) {
                 $createServices->type = $request->input('type');
@@ -270,6 +275,7 @@ class AdminViewController extends Controller
                 return redirect('/admin/service')->with('error');
             }
         }
+
         public function editServices($id)
         {
             $editServices = Service::find($id);
@@ -277,6 +283,11 @@ class AdminViewController extends Controller
         }
         public function updateServices(Request $request)
         {
+                $request->validate([
+                    'description' => 'required|string|max:255',
+                ], [
+                    'description' => 'The description may not be greater than 255 characters.',
+                ]);
             $updateServices = Service::find($request->id);
             if ($updateServices) {
                 $updateServices->type = $request->input('type');
